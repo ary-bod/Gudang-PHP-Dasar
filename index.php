@@ -35,6 +35,7 @@ $count = mysqli_query($conn, "SELECT count(*) as total from books");
 </head>
 
 <body style="background-color: #ede0d4;">
+  <?php include('navbar.php') ?>
   <div class="container py-5">
     <div class="jumbotron jumbotron-fluid" style="border-radius: 20px; padding-left: 60px; background-color: #e6ccb2; color: #7f5539;">
       <div class="container">
@@ -42,7 +43,9 @@ $count = mysqli_query($conn, "SELECT count(*) as total from books");
         <p class="lead font-weight-normal">Tempatnya? Tempatnya penyimpanan buku lah! Kok malah nanya?! Canda whehe.</p>
       </div>
     </div>
-    <a class="btn btn-outline-dark mb-4" href="add.php">Tambah Buku</a>
+    <?php if (isset($_SESSION['username'])) : ?>
+      <a class="btn btn-outline-dark mb-4" href="add.php">Tambah Buku</a>
+    <?php endif; ?>
     <input id="jumlah_buku" type="hidden" value="<?= mysqli_fetch_assoc($count)['total']; ?>">
     <table class="table table-hover" style="border-top-left-radius: 20px; border-top-right-radius: 20px; background-color: #e6ccb2; color: #9c6644;">
       <thead>
@@ -52,7 +55,9 @@ $count = mysqli_query($conn, "SELECT count(*) as total from books");
           <th scope="col">Genre</th>
           <th scope="col">Tahun Terbit</th>
           <th scope="col">Penulis</th>
-          <th scope="col" class="text-center">Aksi</th>
+          <?php if (isset($_SESSION['username'])) : ?>
+            <th scope="col" class="text-center">Aksi</th>
+          <?php endif; ?>
         </tr>
       </thead>
       <tbody id="table-body">
@@ -65,10 +70,11 @@ $count = mysqli_query($conn, "SELECT count(*) as total from books");
               <td><?= $book['genre']; ?></td>
               <td><?= $book['published_year']; ?></td>
               <td><?= $book['author']; ?></td>
-              <td class="text-center">
-                <a href="edit.php?id=<?= $book['id']; ?>" class="btn btn-outline-brown"><i class="far fa-edit"></i> Ubah</a>
-                <a href="delete.php?id=<?= $book['id']; ?>" class="btn btn-outline-danger" data-id="<?= $book['id']; ?>"><i class="fas fa-trash"></i> Hapus</a>
-              </td>
+              <?php if (isset($_SESSION['username'])) : ?>
+                <td class="text-center">
+                  <a href="edit.php?id=<?= $book['id']; ?>" class="btn btn-outline-brown"><i class="far fa-edit"></i> Ubah</a>
+                  <a href="delete.php?id=<?= $book['id']; ?>" class="btn btn-outline-danger" data-id="<?= $book['id']; ?>"><i class="fas fa-trash"></i> Hapus</a>
+                </td> <?php endif; ?>
             </tr>
           <?php } ?>
         <?php else : ?>

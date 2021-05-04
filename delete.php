@@ -2,6 +2,8 @@
 
 include('connection.php');
 
+if (!$_SESSION['username']) header('Location: login.php');
+
 if ($_GET) {
   $id = $_GET['id'];
   $query_delete = "DELETE FROM books WHERE id=$id";

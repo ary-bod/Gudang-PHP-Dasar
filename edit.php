@@ -2,6 +2,8 @@
 
 include('connection.php');
 
+if (!$_SESSION['username']) header('Location: login.php');
+
 $has_update = false;
 
 if ($_GET) {

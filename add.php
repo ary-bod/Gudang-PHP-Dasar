@@ -2,6 +2,8 @@
 
 include('connection.php');
 
+if (!$_SESSION['username']) header('Location: login.php');
+
 if ($_POST) {
   $title = ucwords($_POST['title']);
   $genre = ucwords($_POST['genre']);
