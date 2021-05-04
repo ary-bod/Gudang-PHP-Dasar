@@ -39,7 +39,10 @@ $count = mysqli_query($conn, "SELECT count(*) as total from books");
   <div class="container py-5">
     <div class="jumbotron jumbotron-fluid" style="border-radius: 20px; padding-left: 60px; background-color: #e6ccb2; color: #7f5539;">
       <div class="container">
-        <h1 class="display-3">Gudang Buku</h1>
+        <?php if (isset($_SESSION['username'])) : ?>
+          <p class="lead font-weight-normal">Halo <?= $_SESSION['name']; ?>! Selamat datang di</p>
+        <?php endif; ?>
+        <h1 class="display-3" style="margin-top: -20px;">Gudang Buku</h1>
         <p class="lead font-weight-normal">Tempatnya? Tempatnya penyimpanan buku lah! Kok malah nanya?! Canda whehe.</p>
       </div>
     </div>
