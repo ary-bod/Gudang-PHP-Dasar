@@ -10,17 +10,16 @@ if ($_POST) {
   $username = strtolower($_POST['username']);
   $password = $_POST['password'];
 
-  var_dump($_POST);
   if (!$name || !$username || !$password) {
     $pesan_error = "Nama, Username, dan Password diperlukan.";
   } else {
     $result = mysqli_query($conn, "SELECT username FROM users WHERE username='$username'");
-    if (!$result) {
+    if (mysqli_num_rows($result) === 1) {
+      $pesan_error = "Username sudah digunakan oleh pengguna lain.";
+    } else {
       $password = password_hash($password, PASSWORD_DEFAULT);
       mysqli_query($conn, "INSERT INTO users VALUES('', '$name', '$username', '$password')");
       $register_status = mysqli_affected_rows($conn);
-    } else if (mysqli_fetch_assoc($result)) {
-      $pesan_error = "Username sudah digunakan oleh pengguna lain.";
     }
   }
 }
@@ -84,7 +83,6 @@ if ($_POST) {
         <?php if ($_POST && $pesan_error !== "") : ?>
           <div class="alert alert-warning" role="alert">
             <?= $pesan_error; ?>
-            <?= mysqli_error($conn); ?>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
