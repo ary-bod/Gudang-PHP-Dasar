@@ -83,6 +83,7 @@ if ($_POST) {
         <?php if ($_POST && $pesan_error !== "") : ?>
           <div class="alert alert-warning" role="alert">
             <?= $pesan_error; ?>
+            <?= mysqli_error($conn); ?>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
