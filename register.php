@@ -10,16 +10,21 @@ if ($_POST) {
   $username = strtolower($_POST['username']);
   $password = $_POST['password'];
 
+  var_dump($_POST);
   if (!$name || !$username || !$password) {
     $pesan_error = "Nama, Username, dan Password diperlukan.";
+    var_dump("DUAR SATU 16");
   } else {
     $result = mysqli_query($conn, "SELECT username FROM users WHERE username='$username'");
+    var_dump("DUAR SATU 19");
     if (mysqli_fetch_assoc($result)) {
       $pesan_error = "Username sudah digunakan oleh pengguna lain.";
+      var_dump("DUAR SATU 22");
     } else {
       $password = password_hash($password, PASSWORD_DEFAULT);
       mysqli_query($conn, "INSERT INTO users VALUES('', '$name', '$username', '$password')");
       $register_status = mysqli_affected_rows($conn);
+      var_dump("DUAR SATU 27");
     }
   }
 }
