@@ -2,7 +2,7 @@
 
 session_start();
 // mysqli_connect('nama host', 'username host', 'password host', 'database');
-$conn = mysqli_connect("localhost", "root", "", "warehouse");
+$conn = mysqli_connect("localhost", "root", "root", "cloud-warehouse");
 
 // apabila koneksi gagal, maka akan muncul error
 if (mysqli_connect_errno()) {

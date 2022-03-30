@@ -88,7 +88,7 @@ if ($_POST) {
             </button>
           </div>
         <?php elseif ($_POST && $register_status == 1) : ?>
-          <div class="alert alert-info" role="alert">
+          <div class="alert alert-brown" role="alert">
             Register berhasil! Silahkan login untuk melanjutkan!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
