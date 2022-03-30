@@ -70,6 +70,7 @@ if ($_POST) {
 </head>
 
 <body style="background-color: #ede0d4;">
+  <?php include('navbar.php') ?>
   <div class="container mt-5">
     <div class="jumbotron jumbotron-fluid" style="border-radius: 20px; padding-left: 60px; background-color: #e6ccb2; color: #7f5539;">
       <div class="container">
